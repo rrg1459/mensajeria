@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Texto:</strong>
+  <%= @mensaje.texto %>
+</p>
+
+<p>
+  <strong>Contactos:</strong>
+  <%= @mensaje.cantidad_contactos %>
+</p>
+
+<strong><%= 'Grupos:' %></strong>
+<%= @mensaje.grupos.map(&:nombre).sort.join(', ') %>
+<br>
+<br>
+
+<%= link_to 'Editar', edit_mensaje_path(@mensaje) %> |
+<%= link_to 'Regresar a mensajes', mensajes_path %>

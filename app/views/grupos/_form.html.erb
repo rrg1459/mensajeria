@@ -1,0 +1,38 @@
+<%= form_with(model: grupo, local: true) do |form| %>
+  <% if grupo.errors.any? %>
+    <div id="error_explanation">
+      <h2> Errores en este formulario </h2>
+
+      <ul>
+      <% grupo.errors.full_messages.each do |mensaje| %>
+        <li><%= mensaje %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :nombre %>
+    <%= form.text_field :nombre, id: :grupo_nombre %>
+  </div>
+
+    <br>
+  <table>
+    <strong>
+    <%= form.label "Grupos" %><br />
+    </strong>
+    <%= form.collection_check_boxes :contacto_ids, Contacto.all, :id, :nombre do |b| %>
+      <div class="collection-check-box">
+        <tr>
+          <td><%= b.check_box %></td>
+          <td><%= b.label %></td>
+        </tr>
+      </div>
+    <% end %>
+</table>
+<br
+
+  <div class="actions">
+    <%= form.submit "Grabar" %>
+  </div>
+<% end %>

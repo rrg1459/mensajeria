@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Mensajes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Texto</th>
+      <th>Contactos</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @mensajes.each do |mensaje| %>
+      <tr>
+        <td><%= link_to mensaje.texto, mensaje %></td>
+        <td><%= mensaje.cantidad_contactos %></td>
+        <td><%= link_to 'Borrar', mensaje, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo Mensaje', new_mensaje_path %>

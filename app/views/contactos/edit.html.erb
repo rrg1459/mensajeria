@@ -1,0 +1,7 @@
+<h1>Editando Contacto</h1>
+
+<% @num = false %>
+<%= render 'form', contacto: @contacto %>
+
+<%= link_to 'Mostrar', @contacto %> |
+<%= link_to 'Regresar a contactos', contactos_path %>

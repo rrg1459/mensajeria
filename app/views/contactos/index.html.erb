@@ -1,0 +1,63 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Contactos</h1>
+
+<fieldset class="search-field">
+  <legend>Buscar en Contactos</legend>
+  <%= search_form_for @buscar do |f| %>
+    <div class="field">
+      <%= f.label :nombre_cont_any, "El nombre contiene:" %>
+      <%= f.text_field :nombre_cont_any %>
+    </div>
+
+    <div class="field">
+      <%= f.label :numero_cont_any, "El numero contiene:" %>
+      <%= f.text_field :numero_cont_any %>
+    </div>
+
+      <table>
+    <strong>
+    <%= f.label "Grupos" %><br />
+    </strong>
+    <%= f.collection_check_boxes :grupos_id_in_any, Grupo.all, :id, :nombre do |b| %>
+      <div class="collection-check-box">
+        <tr>
+          <td><%= b.check_box %></td>
+          <td><%= b.label %></td>
+        </tr>
+      </div>
+    <% end %>
+  </table>
+
+
+    <div class="actions"><%= f.submit "Buscar" %></div>
+  <% end %>
+</fieldset>
+<br>
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Numero</th>
+      <th>Archivo</th>
+      <th>Grupos</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contactos.each do |contacto| %>
+      <tr>
+        <td><%= link_to contacto.nombre, contacto %></td>
+        <td><%= contacto.numero %></td>
+        <td><%= contacto.archivo %></td>
+        <td><%= contacto.grupos.map(&:nombre).sort.join(", ") %></td>
+        <td><%= link_to 'Borrar', contacto, method: :delete, data: { confirm: 'Esta seguro?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo Contacto', new_contacto_path %>

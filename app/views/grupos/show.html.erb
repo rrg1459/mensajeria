@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Grupo:</strong>
+  <%= @grupo.nombre %>
+</p>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Numero</th>
+      <th>Archivo</th>
+      <th>Todos los grupos</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @contactos.each do |contacto| %>
+      <tr>
+        <td><%= link_to contacto.nombre, contacto %></td>
+        <td><%= contacto.numero %></td>
+        <td><%= contacto.archivo %></td>
+        <td><%= contacto.grupos.map(&:nombre).sort.join(", ") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
+<%= link_to 'Editar', edit_grupo_path(@grupo) %> |
+<%= link_to 'Regresar a grupos', grupos_path %>

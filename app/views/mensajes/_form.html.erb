@@ -1,0 +1,42 @@
+<%= form_with(model: mensaje, local: true) do |form| %>
+  <% if mensaje.errors.any? %>
+    <div id="error_explanation">
+      <h2> Errores en este formulario </h2>
+
+      <ul>
+      <% mensaje.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :texto %>
+    <%= form.text_area :texto, id: :mensaje_texto %>
+  </div>
+
+  <div class="field">
+    <%= form.label "Cantidad de contactos" %>
+    <%= mensaje.cantidad_contactos %>
+  </div>
+
+    <br>
+  <table>
+    <strong>
+    <%= form.label "Grupos" %><br />
+    </strong>
+    <%= form.collection_check_boxes :grupo_ids, Grupo.all, :id, :nombre do |b| %>
+      <div class="collection-check-box">
+        <tr>
+          <td><%= b.check_box %></td>
+          <td><%= b.label %></td>
+        </tr>
+      </div>
+    <% end %>
+</table>
+<br>
+  <div class="actions">
+    <%= form.submit "Grabar" %>
+  </div>
+<% end %>

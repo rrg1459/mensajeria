@@ -1,0 +1,44 @@
+<%= form_with(model: contacto, local: true) do |f| %>
+  <% if contacto.errors.any? %>
+    <div id="error_explanation">
+      <h2> Errores en este formulario </h2>
+
+      <ul>
+      <% contacto.errors.full_messages.each do |mensaje| %>
+        <li><%= mensaje %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nombre %>
+    <%= f.text_field :nombre, id: :contacto_nombre %>
+  </div>
+
+  <% if @num %>
+    <div class="field">
+      <%= f.label :numero %>
+      <%= f.text_field :numero, id: :contacto_numero %>
+    </div>
+  <% end %>
+
+  <br>
+  <table>
+    <strong>
+    <%= f.label "Grupos" %><br />
+    </strong>
+    <%= f.collection_check_boxes :grupo_ids, Grupo.all, :id, :nombre do |b| %>
+      <div class="collection-check-box">
+        <tr>
+          <td><%= b.check_box %></td>
+          <td><%= b.label %></td>
+        </tr>
+      </div>
+    <% end %>
+</table>
+<br>
+  <div class="actions">
+    <%= f.submit "Grabar" %>
+  </div>
+<% end %>

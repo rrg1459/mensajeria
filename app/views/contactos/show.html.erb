@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Nombre:</strong>
+  <%= @contacto.nombre %>
+</p>
+
+<p>
+  <strong>Numero:</strong>
+  <%= @contacto.numero %>
+</p>
+
+<p>
+  <strong>Archivo:</strong>
+  <%= @contacto.archivo %>
+</p>
+
+<strong><%= 'Grupos:' %></strong>
+<%= @contacto.grupos.map(&:nombre).sort.join(', ') %>
+<br>
+<br>
+
+<%= link_to 'Editar', edit_contacto_path(@contacto) %> |
+<%= link_to 'Regresar a contactos', contactos_path %>
